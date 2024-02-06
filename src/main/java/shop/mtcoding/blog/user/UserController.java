@@ -23,11 +23,10 @@ public class UserController {//생성자가 만들어져 있는 상태임
         System.out.println(requestDto);
 
         if (requestDto.getUsername().length() < 3) {//유효성 검사
-            return "error/400"; //viewResolver 설정이 돼있음.
+            return "error/404"; //viewResolver 설정이 돼있음.
         }
 
         User user = userRepository.findByUsernameAndPassword(requestDto);
-
         if (user == null) {// 조회 안됨 (401)
             return "error/401";
         } else { // 조회 됐음 (인증됨)
